@@ -5,7 +5,7 @@ if (isset($_GET['contact']) == 'pay_payShahrie'):
 
     $obj->settbl($reshte);
     $val = $obj->select_data_pay($pid);
-
+var_dump($val);
     ?>
 
     <header class="panel-heading"><label class="label-success">پرداخت شهریه
@@ -37,7 +37,7 @@ if (isset($_GET['contact']) == 'pay_payShahrie'):
                         <td><?php echo $val->tell ?></td>
                         <td><?php $time = $val->tsabtnam;
                             echo jdate('d  / F /  y', $time); ?></td>
-                        <td><?php $time = $val->tsabtnam;
+                        <td><?php $time = $val->dateShahrie;
                             echo jdate('d  / F /  y', $time); ?></td>
                         <td><?php echo $val->mony ?></td>
                         <td><?php echo $val->month ?></td>
