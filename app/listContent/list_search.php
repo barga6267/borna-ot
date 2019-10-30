@@ -2,6 +2,7 @@
 ob_start();
 $obj->settbl("cocher");
 $row = $obj->select_data("*");
+$searchForAllData=null;
 ?>
 
 
@@ -13,11 +14,29 @@ $row = $obj->select_data("*");
 
 if (isset($_POST['sr2btn'])):
     $data = $_POST['frm'];
-    $tblId="r_".$data['reshte'];
-    $obj->settbl($tblId);
-    $value = $data['value'];
+    if ($data['reshte']=="sabt_data_tbl"){
+        $obj->settbl("sabt_data_tbl");
+        $value = $data['value'];
+        $res = $obj->like_data("name", $value);
+        if(empty($res)){
+            echo  "در جدول ثبت نام ها  یافت نشد !!";
+            $obj->settbl("shah_data_tbl");
+            $value = $data['value'];
+            $res = $obj->like_data("name", $value);
+            if (empty($res)){
+                echo "</br>";
+                echo  "در جدول شهریه ها یافت نشد !!";
+                echo "</br>";
+                echo "همچین مشخصه ای موجود نیست !";
+            }
+        }
+    }else{
+        $tblId="r_".$data['reshte'];
+        $obj->settbl($tblId);
+        $value = $data['value'];
 
-    $res = $obj->like_data("name", $value);
+        $res = $obj->like_data("name", $value);
+    }
 
     ?>
 
@@ -33,6 +52,7 @@ if (isset($_POST['sr2btn'])):
                 <table class="table table-striped table-advance table-hover">
                         <thead>
                         <tr>
+                            <th>ردیف</th>
                             <th>نام</th>
                             <th>نام پدر</th>
                             <th>سن</th>
@@ -48,9 +68,12 @@ if (isset($_POST['sr2btn'])):
                         </thead>
                         <tbody>
                         <?php
+                        $i=0;
                         foreach ($res as $vals):
+                            $i++;
                             ?>
                             <tr>
+                                <td><?php echo $i ?></td>
                                 <td><?php echo $vals->name ?></td>
                                 <td><?php echo $vals->faname ?></td>
                                 <td><?php echo $vals->age ?></td>
@@ -105,6 +128,7 @@ endif;
                         <?php
                         endforeach;
                         ?>
+                            <option value="sabt_data_tbl">جستجو در همه رشته ها</option>
                         </select>
                     </div>
                     <div class="form-group">
