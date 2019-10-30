@@ -1,0 +1,32 @@
+/*
+JS Persian Calendar - by AMIB
+http://amib.ir/weblog
+amib@amib.ir
+*/
+
+body {
+	direction: rtl;
+}
+
+body, input {
+	font: 12px tahoma;
+	line-height: 1em;
+}
+
+input {
+	border: solid 1px #66a5ff;
+	direction: ltr;
+}
+
+a {
+	text-decoration: none;
+	color: #CC0000;
+}
+
+a:hover{
+	color: #990000;
+}
+
+input.wide {
+	width: 250px;
+}
