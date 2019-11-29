@@ -31,11 +31,13 @@ if (isset($_GET['did'])) {
             <table class="table table-striped table-advance table-hover">
                 <thead>
                 <tr>
+                    <th></th>
                     <th>نام</th>
                     <th>نام پدر</th>
                     <th>سن</th>
                     <th>کلاس و مربی</th>
                     <th>تلفن</th>
+                    <th>مبلغ</th>
                     <th>تاریخ ثبت نام</th>
                     <th>تاریخ اخرین پرداخت</th>
                     <th>حذف</th>
@@ -43,14 +45,19 @@ if (isset($_GET['did'])) {
                 </thead>
                 <tbody>
                 <?php
+                $i=0;
+                $allMony=0;
+
                 foreach ($row as $val):
                     ?>
                     <tr>
+                        <td><?php echo ++$i; ?></td>
                         <td><?php echo $val->name ?></td>
                         <td><?php echo $val->faname ?></td>
                         <td><?php echo $val->age ?></td>
                         <td><?php echo $val->reshte; ?></td>
                         <td><?php echo $val->tell ?></td>
+                        <td><?php echo $val->mony; $allMony+=$val->mony; ?></td>
                         <td><?php $time = $val->tsabtnam;
                             echo jdate('d  / F /  y', $time); ?></td>
                         <td><?php $time = $val->tsabtnam;
@@ -60,6 +67,16 @@ if (isset($_GET['did'])) {
                     </tr>
                 <?php endforeach; ?>
                 </tbody>
+
+                <tfoot style="color: red">
+                <tr>
+
+                    <th>تعداد هنرجو</th>
+                    <th><?php echo $i; ?></th>
+                    <th>جمع دریافتی</th>
+                    <th><?php echo $allMony; ?></th>
+                </tr>
+                </tfoot>
             </table>
         </section>
     </div>

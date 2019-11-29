@@ -28,6 +28,7 @@ if (isset($_GET['did'])) {
             <table class="table  table-striped table-advance table-hover">
                 <thead>
                 <tr>
+                    <th></th>
                     <th>نام</th>
                     <th>ماساژور</th>
                     <th>مبلغ بلیط</th>
@@ -38,9 +39,11 @@ if (isset($_GET['did'])) {
                 </thead>
                 <tbody>
                 <?php
+                $i=0;
                 foreach ($row as $val):
                     ?>
                     <tr>
+                        <td><?php echo ++$i; ?></td>
                         <td><?php echo $val->name ?></td>
                         <td><?php echo $val->mos ?></td>
                         <td><?php echo $val->monyMos ?></td>

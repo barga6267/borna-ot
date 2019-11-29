@@ -117,7 +117,7 @@ if (isset($_GET['logout'])) {
                     </a>
                     <ul class="sub">
                         <li><a class="" href="dashbord.php?contact=add_mos">بلیط ماساژ</a></li>
-                        <li><a class="" href="dashbord.php?contact=list_mos"> لیست ماساژ</a></li>
+                        <li><a class="" href="dashbord.php?contact=list_masaje"> لیست ماساژ</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -240,6 +240,12 @@ if (isset($_GET['logout'])) {
                 }elseif ($_GET['contact'] == 'list_swime_full_m_Show')
                 {
                     include_once 'app/swime/list_swime_full_m_Show.php';
+                }elseif ($_GET['contact'] == 'list_masaje')
+                {
+                    include_once 'app/masaje/list_mos.php';
+                }elseif ($_GET['contact'] == 'list_mos_month')
+                {
+                    include_once 'app/masaje/list_mos_month.php';
                 }
             }
             ?>

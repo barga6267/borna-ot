@@ -1,7 +1,5 @@
 <?php
 $monthId=$_GET['monthId'];
-$MoId=$_GET['MoId'];
-$MoIdById="s_".$MoId;
 
 switch ($monthId){
     case 1:
@@ -41,7 +39,7 @@ switch ($monthId){
         $MonthStr="۱۲-۹۸";
         break;
 }
-$obj->settbl($MoIdById);
+$obj->settbl("masaje_tbl");
 $row = $obj->select_data("*");
 
 ?>
@@ -56,15 +54,14 @@ $row = $obj->select_data("*");
             <table class="table table-striped table-advance table-hover">
                 <thead>
                 <tr>
+                <tr>
                     <th></th>
                     <th>نام</th>
-                    <th>نام پدر</th>
-                    <th>سن</th>
-                    <th>کلاس و مربی</th>
-                    <th>تلفن</th>
-                    <th>مبلغ</th>
-                    <th>تاریخ ثبت نام</th>
-                    <th>تاریخ اخرین پرداخت</th>
+                    <th>ماساژور</th>
+                    <th>مبلغ بلیط</th>
+                    <th>زمان ماساژ</th>
+                    <th>تاریخ  ماساژ </th>
+                </tr>
                 </tr>
                 </thead>
                 <tbody>
@@ -72,31 +69,27 @@ $row = $obj->select_data("*");
                 $i=0;
                 $allMony=0;
                 foreach ($row as $val):
-                    $MonYear=jdate('n-y', $val->tsabtnam);
+                    $MonYear=jdate('n-y', $val->time );
                     if ($MonYear==$MonthStr):
-                    ?>
-                    <tr>
-                        <td><?php echo ++$i; ?></td>
-                        <td><?php echo $val->name ?></td>
-                        <td><?php echo $val->faname ?></td>
-                        <td><?php echo $val->age ?></td>
-                        <td><?php echo $val->reshte; ?></td>
-                        <td><?php echo $val->tell ?></td>
-                        <td><?php echo $val->mony;$allMony+=$val->mony; ?></td>
-                        <td><?php $time = $val->tsabtnam;
-                            echo jdate('d  / F /  y', $time); ?></td>
-                        <td><?php $time = $val->tsabtnam;
-                            echo jdate('d  / F /  y', $time); ?></td>
-                    </tr>
-                <?php
-                endif;
+                        ?>
+                        <tr>
+                            <td><?php echo ++$i; ?></td>
+                            <td><?php echo $val->name ?></td>
+                            <td><?php echo $val->mos ?></td>
+                            <td><?php echo $val->monyMos;$allMony+=$val->monyMos; ?></td>
+                            <td><?php echo $val->timeMos; ?></td>
+                            <td><?php $time = $val->time;
+                                echo jdate('d  / F /  y', $time); ?></td>
+                        </tr>
+                    <?php
+                    endif;
                 endforeach; ?>
                 </tbody>
 
                 <tfoot style="color: red">
                 <tr>
 
-                    <th>تعداد هنرجو</th>
+                    <th>تعداد ماساژ</th>
                     <th><?php echo $i; ?></th>
                     <th>جمع دریافتی</th>
                     <th><?php echo $allMony; ?></th>

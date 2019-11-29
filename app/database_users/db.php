@@ -90,7 +90,6 @@ class db
         $sql = $this->pdo->prepare("SELECT `*` FROM `{$this->tbl}` WHERE id='$id'");
         $sql->execute();
         $row = $sql->fetch(pdo::FETCH_OBJ);
-
         return ($row);
 
     }
