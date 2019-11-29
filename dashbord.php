@@ -234,6 +234,12 @@ if (isset($_GET['logout'])) {
                 }elseif ($_GET['contact'] == 'joziat')
                 {
                     include_once 'app/gozaresh/go_joziat.php';
+                }elseif ($_GET['contact'] == 'list_swime_full_m')
+                {
+                    include_once 'app/swime/list_swime_full_m.php';
+                }elseif ($_GET['contact'] == 'list_swime_full_m_Show')
+                {
+                    include_once 'app/swime/list_swime_full_m_Show.php';
                 }
             }
             ?>

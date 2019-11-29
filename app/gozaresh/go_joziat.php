@@ -30,6 +30,7 @@ if (isset($_GET['tbl'])) {
         <table class="table table-bordered bod">
            <thead>
             <tr>
+                <td>ردیف</td>
                 <td>نام</td>
                 <td>رشته ورزشی</td>
                 <td>مبلغ</td>
@@ -40,15 +41,17 @@ if (isset($_GET['tbl'])) {
 			        <?php
 		$timnow="";
 		$timdb="";
+		$i=0;
         foreach ($row as $show) {
 			$timnow = jdate('Y/F', time()); //-----زمان جاری را به روز و ماه -----
-			
 			$timdb = $show->tsabtname;//---زمان ذخیره شده در دیتا بی
 			$timdb = jdate('Y/F', $timdb); //-------تبدیل زمان دیتا بیس به فرمت ماه و سالtsabtname
             if ($timdb == $timnow) {
                 if ($show->par_tbl==$tbl){
 					$tsabtname=$show->tsabtname;
+					$i++;
 		echo "<tr>
+                      <td>".$i."</td>
                       <td>".$show->name."</td>
                        <td>".$show->reshte."</td>
                        <td>".$show->mony."</td>

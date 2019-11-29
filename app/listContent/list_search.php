@@ -54,15 +54,8 @@ if (isset($_POST['sr2btn'])):
                         <tr>
                             <th>ردیف</th>
                             <th>نام</th>
-                            <th>نام پدر</th>
-                            <th>سن</th>
                             <th>رشته ورزشی</th>
-                            <th>تلفن</th>
-                            <th>تاریخ ثبت نام</th>
-                            <th>تاریخ اخرین پرداخت</th>
                             <th>ماه شهریه</th>
-                            <th>صف شهریه</th>
-                            <th>صف شهریه</th>
 <!--                            <th>حذف</th>-->
                         </tr>
                         </thead>
@@ -75,17 +68,8 @@ if (isset($_POST['sr2btn'])):
                             <tr>
                                 <td><?php echo $i ?></td>
                                 <td><?php echo $vals->name ?></td>
-                                <td><?php echo $vals->faname ?></td>
-                                <td><?php echo $vals->age ?></td>
                                 <td><?php echo $vals->reshte; ?></td>
-                                <td><?php echo $vals->tell ?></td>
-                                <td><?php $time = $vals->tsabtnam;
-                                    echo jdate('d  / F /  y', $time); ?></td>
-                                <td><?php $time = $vals->dateShahrie;
-                                    echo jdate('d  / F /  y', $time); ?></td>
                                 <td><?php echo $vals->month ?></td>
-                                <td><?php echo $vals->tshahrie1; ?></td>
-                                <td><?php echo $vals->tshahrie2; ?></td>
 <!--                                <td><a href="dashbord.php?contact=search&did=--><?php //echo $vals->id ?><!--" class="btn btn-danger btn-xs"><i-->
 <!--                                            class="icon-trash "></i></a></td>-->
                             </tr>
