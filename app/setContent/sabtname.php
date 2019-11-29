@@ -13,7 +13,11 @@ if (isset($_POST['btn'])) {
     $data['dateShahrie'] = time();         //------------برای نشان دادن زمان پرداخت شهریه---------
     $data['tshahrie1'] = $data['month'];    //----برای نشان اینکه شهریه پرداختی برای کدام ماه است---------
     $data['tshahrie2'] = '.';
-    $data['tshahrie3'] = '.';
+    $monthToStr=$data['month'];
+    $monyToStr=$data['mony'];
+    $timeToStr=$data['tsabtnam'];
+    $array=array($monthToStr,$monyToStr,$timeToStr);
+    $data['tshahrie3'] = json_encode($array);
     $_SESSION['name'] =         $data['name'];//----------for print part 2---
     $_SESSION['reshtetitle'] =  $reshteTitle;
     $_SESSION['mony'] =         $data['mony'];

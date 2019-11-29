@@ -37,7 +37,7 @@ class dbw
     public function createTbl($LastInsertId)
     {
         $sql = "CREATE TABLE r_$LastInsertId (
-    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
     name VARCHAR(30) NOT NULL,
     reshte VARCHAR(30) NOT NULL,
     tell VARCHAR(50),
@@ -54,10 +54,6 @@ class dbw
         $this->pdo->exec($sql);
 
     }  //-----create tbl in databases----
-//-----برا یبانواون باید اولین id داخل جدول
-// مربی ها را مثلا 100 داد تا از ان شروع بشود
-// و  id ها با هم تداخل نداشته باشند
-// تا تفکی شود در گزارشگیری
 
     public function add_data($data)
     {
@@ -91,10 +87,9 @@ class dbw
     public function select_data_pay($id)
     {
 
-        $sql = $this->pdo->prepare("SELECT `*` FROM `{$this->tbl}` WHERE id='$id'");
+        $sql = $this->pdo->prepare("SELECT * FROM `{$this->tbl}` WHERE id='$id'");
         $sql->execute();
         $row = $sql->fetch(pdo::FETCH_OBJ);
-
         return ($row);
 
     }
@@ -134,6 +129,8 @@ class dbw
     {
 
         $sql = $this->pdo->prepare("delete from `{$this->tbl}` WHERE id=$id ");
+        //	var_dump($sql);
+
         $sql->execute();
 
     }
@@ -141,7 +138,8 @@ class dbw
     public function delete_data_par_id($par_id,$par_tbl)
     {
 
-        $sql = $this->pdo->prepare("delete from `{$this->tbl}` WHERE par_id=$par_id & par_tbl=$par_tbl ");
+        $sql = $this->pdo->prepare("delete from `{$this->tbl}` WHERE `par_id`='$par_id' AND `par_tbl`='$par_tbl' ");
+        //var_dump($sql);die;
         $sql->execute();
 
     }
@@ -158,9 +156,7 @@ class dbw
 
     public function edit_data($data, $col, $id)
     {
-        $sql = $this->pdo->prepare("UPDATE `{$this->tbl}` SET `$col[0]`='$data[0]',`$col[1]`='$data[1]' ,`$col[2]`='$data[2]',
-                                                              `$col[3]`='$data[3]',`$col[4]`='$data[4]' ,`$col[5]`='$data[5]' 
-                                                              WHERE id='$id'");
+        $sql = $this->pdo->prepare("UPDATE `{$this->tbl}` SET `$col[0]`='$data[0]',`$col[1]`='$data[1]' WHERE id='$id'");
         $sql->execute();
     }
 

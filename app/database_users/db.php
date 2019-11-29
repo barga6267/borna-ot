@@ -87,7 +87,7 @@ class db
     public function select_data_pay($id)
     {
 
-        $sql = $this->pdo->prepare("SELECT `*` FROM `{$this->tbl}` WHERE id='$id'");
+        $sql = $this->pdo->prepare("SELECT * FROM `{$this->tbl}` WHERE id='$id'");
         $sql->execute();
         $row = $sql->fetch(pdo::FETCH_OBJ);
         return ($row);
@@ -156,9 +156,7 @@ class db
 
     public function edit_data($data, $col, $id)
     {
-        $sql = $this->pdo->prepare("UPDATE `{$this->tbl}` SET `$col[0]`='$data[0]',`$col[1]`='$data[1]' ,`$col[2]`='$data[2]',
-                                                              `$col[3]`='$data[3]',`$col[4]`='$data[4]' ,`$col[5]`='$data[5]' 
-                                                              WHERE id='$id'");
+        $sql = $this->pdo->prepare("UPDATE `{$this->tbl}` SET `$col[0]`='$data[0]',`$col[1]`='$data[1]' WHERE id='$id'");
         $sql->execute();
     }
 

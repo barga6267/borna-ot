@@ -70,16 +70,21 @@ if (isset($_GET['contact']) == 'pay_payShahrie'):
         $monthNew     = $data['month'];////-----------ایجاد صف برای تغییر در قسمت شهریها --  end ----
 
         $monyNew        =  $data['mony'];
-        $dateShahrienew =  time();         //--------dateShahrienew ---برای مشخص شدن اینکه کی شهریه داده
+        $dateShahrienew =  time();//--------dateShahrienew ---برای مشخص شدن اینکه کی شهریه داده
+
+        $arry=array($data['month'],$data['mony'],time());
+        $payShahrieInArray=json_decode($val->tshahrie3);
+        $payShahrieInArray[]= $arry;
+        $payShahrieInJson=json_encode($payShahrieInArray);
 
 
-        $datau = ["$tshahrie3New" ,"$tshahrie2New" ,"$tshahrie1New" ,"$monthNew" ,"$monyNew" ,"$dateShahrienew" ];
-        $colu = ["tshahrie3" ,"tshahrie2" ,"tshahrie1" ,"month" ,"mony" ,"dateShahrie" ];//---برای ادیت کردن شهریه---
+        $datau = ["$payShahrieInJson" ,"$val->tshahrie3" ];
+        $colu = ["tshahrie3" ,"tshahrie2" ];//---برای ادیت کردن شهریه---
 
         $obj->edit_data($datau ,$colu , $pid);
 
-        $dataForGo= array("name"=>$val->name, "month"=>$data['month'], "tsabtname"=>$dateShahrienew
-        ,"par_tbl"=>$reshte, "par_id"=>$pid, "reshte"=>$val->reshte, "mony"=>$monyNew);
+        $dataForGo= array("name"=>$val->name, "month"=>$data['month'], "tsabtname"=>time()
+        ,"par_tbl"=>$reshte, "par_id"=>$pid, "reshte"=>$val->reshte, "mony"=>$data['mony']);
         //----------------------------------برای اینسرت کردن در جدول شهریه گزارشگیری--------
 
         $obj->settbl("shah_data_tbl");
@@ -98,7 +103,7 @@ if (isset($_GET['contact']) == 'pay_payShahrie'):
 //
 //        $obj->settbl('alldatau');
 //        $obj->add_data($addup);
-//    header("location:dashbord.php?contact=pay_term");
+ //   header("location:dashbord.php?contact=payShahrie");
 
 
     }
