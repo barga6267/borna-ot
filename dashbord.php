@@ -154,6 +154,7 @@ if (isset($_GET['logout'])) {
                         <ul class="sub">
                             <li><a class="" href="dashbord.php?contact=reshte"> تعریف رشته ورزشی</a></li>
                             <li><a class="" href="dashbord.php?contact=tagir_tbl">تغییر جداول</a></li>
+                            <li><a class="" href="dashbord.php?contact=backUp">back up</a></li>
                         </ul>
                     </li>
             </ul>
@@ -256,6 +257,9 @@ if (isset($_GET['logout'])) {
                 }elseif ($_GET['contact'] == 'up_upBime')
                 {
                     include_once 'app/setContent/up_upBime.php';
+                }elseif ($_GET['contact'] == 'backUp')
+                {
+                    include_once 'app/database_users/backUp.php';
                 }
             }
             ?>
