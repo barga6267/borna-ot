@@ -156,7 +156,7 @@ class db
 
     public function edit_data($data, $col, $id)
     {
-        $sql = $this->pdo->prepare("UPDATE `{$this->tbl}` SET `$col[0]`='$data[0]',`$col[1]`='$data[1]' WHERE id='$id'");
+        $sql = $this->pdo->prepare("UPDATE `{$this->tbl}` SET `$col`='$data' WHERE id='$id'");
         $sql->execute();
     }
 
@@ -169,4 +169,5 @@ class db
     }
 
 }
+
 

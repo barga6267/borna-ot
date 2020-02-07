@@ -40,10 +40,6 @@ if (isset($_GET['did'])) {
                     <th>رشته ورزشی</th>
                     <th>تلفن</th>
                     <th>تاریخ ثبت نام</th>
-                    <th>تاریخ اخرین پرداخت</th>
-                    <th>ماه شهریه</th>
-                    <th>صف شهریه</th>
-                    <th>صف شهریه</th>
                     <th>حذف</th>
                 </tr>
                 </thead>
@@ -59,11 +55,6 @@ if (isset($_GET['did'])) {
                         <td><?php echo $val->tell ?></td>
                         <td><?php $time = $val->tsabtnam;
                             echo jdate('d  / F /  y', $time); ?></td>
-                        <td><?php $time = $val->dateShahrie;
-                            echo jdate('d  / F /  y', $time); ?></td>
-                        <td><?php echo $val->month ?></td>
-                        <td><?php echo $val->tshahrie1; ?></td>
-                        <td><?php echo $val->tshahrie2; ?></td>
                         <td><a href="dashbord.php?contact=reshteVarzeshi&showId=<?php echo $shwoId ?>&did=<?php echo $val->id ?>" class="btn btn-danger btn-xs"><i
                                     class="icon-trash "></i></a></td>
                     </tr>

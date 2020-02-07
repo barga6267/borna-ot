@@ -8,7 +8,7 @@ if (isset($_GET['contact']) == 'pay_payShahrie'):
 
     ?>
 
-    <header class="panel-heading"><label class="label-success">پرداخت شهریه
+    <header class="panel-heading"><label class="label-success">تمدید اعتبار بیمه ورزشی
             &nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;<?php echo $val->name; ?> </label></header>
     <div class="row">
         <div class="col-lg-12">
@@ -21,6 +21,7 @@ if (isset($_GET['contact']) == 'pay_payShahrie'):
                         <th>سن</th>
                         <th>رشته ورزشی</th>
                         <th>تلفن</th>
+                        <th>انقضای بیمه</th>
                         <th>تاریخ ثبت نام</th>
                     </tr>
                     </thead>
@@ -31,6 +32,7 @@ if (isset($_GET['contact']) == 'pay_payShahrie'):
                         <td><?php echo $val->age ?></td>
                         <td><?php echo $val->reshte ?></td>
                         <td><?php echo $val->tell ?></td>
+                        <td><?php echo $val->tshahrie2 ?></td>
                         <td><?php $time = $val->tsabtnam;
                             echo jdate('d  / F /  y', $time); ?></td>
                     </tr>
@@ -44,58 +46,11 @@ if (isset($_GET['contact']) == 'pay_payShahrie'):
     <!-----------------------------------------------------------------------end-form---------------->
     <!-----------------------------------------start- print- form------------------------------>
     <?php
-
     if (isset($_POST['paybtn'])) {
         $data = $_POST['frm'];
-
-
-
-//        $monthOld     = $val->month;  ////-----------ایجاد صف برای تغییر در قسمت شهریها --start ----
-        $tshahrie1Old = $val->tshahrie1;
-//        $tshahrie2Old = $val->tshahrie2;
-//        $tshahrie3Old = $val->tshahrie3;
-//
-//        $tshahrie3New = $tshahrie2Old;
-//        $tshahrie2New = $tshahrie1Old;
-//        $tshahrie1New = $monthOld;
-//        $monthNew     = $data['month'];////-----------ایجاد صف برای تغییر در قسمت شهریها --  end ----
-//
-//        $monyNew        =  $data['mony'];
-//        $dateShahrienew =  time();//--------dateShahrienew ---برای مشخص شدن اینکه کی شهریه داده
-//
-//        $arry=array($data['month'],$data['mony'],time());
-//        $payShahrieInArray=json_decode($val->tshahrie3);
-//        $payShahrieInArray[]= $arry;
-//        $payShahrieInJson=json_encode($payShahrieInArray);
-
-
-        $dt = $tshahrie1Old."#".$data['month']."-".$data['mony']."-".time();
-        $col = "tshahrie1";//---برای ادیت کردن شهریه---
+        $dt =$data['tshahrie2m']."-".$data['tshahrie2y'] ;
+        $col = "tshahrie2";
         $obj->edit_data($dt ,$col , $pid);
-
-        $dataForGo= array("name"=>$val->name, "month"=>$data['month'], "tsabtname"=>time()
-        ,"par_tbl"=>$reshte, "par_id"=>$pid, "reshte"=>$val->reshte, "mony"=>$data['mony']);
-        //----------------------------------برای اینسرت کردن در جدول شهریه گزارشگیری--------
-
-        $obj->settbl("shah_data_tbl");
-        $obj->add_data($dataForGo);
-//        $obj->edit_data_pay($time, 'tpay', $pid);
-
-//        $obj->settbl('alldata');
-//        $obj->edit_data_pay_alldata($time, 'tpay', $pid, $reshte);
-//
-//
-//        $obj->settbl($val->reshte);
-//        $sql = $obj->show_id_chid();
-//        $addup=array("name"=> "$val->name","idresh"=> "$sql->id","reshte"=> "$val->reshte","mony"=> $data["mony"],"time"=> "$time",);
-//
-//
-//
-//        $obj->settbl('alldatau');
-//        $obj->add_data($addup);
- //   header("location:dashbord.php?contact=payShahrie");
-
-
     }
     ?>
 
@@ -104,14 +59,9 @@ if (isset($_GET['contact']) == 'pay_payShahrie'):
             <section class="panel">
 
                 <div class="panel-body">
-                    <form role="form" method="post">
-                        <div class="form-group ">
-                            <label for="exampleInputEmail1"> مبلغ شهریه :</label>
-                            <input type="text" name="frm[mony]" id="mony" class="form-control">
-                        </div>
-                        <div class="form-group ">
-                            <label for="exampleInputEmail1"> ماه :</label>
-                            <select name="frm[month]" class="form-control m-bot15">
+                    <form role="form" method="post"> <div class="form-group ">
+                            <label for="exampleInputEmail1">  تاریخ انقضای بیمه :</label>
+                            <select name="frm[tshahrie2m]" class="form-control m-bot15 ">
                                 <option value="فروردین">فروردین</option>
                                 <option value="اردیبهشت">اردیبهشت</option>
                                 <option value="خرداد">خرداد</option>
@@ -124,11 +74,22 @@ if (isset($_GET['contact']) == 'pay_payShahrie'):
                                 <option value="دی">دی</option>
                                 <option value="بهمن">بهمن</option>
                                 <option value="اسفند">اسفند</option>
-
                             </select>
+                            <select name="frm[tshahrie2y]" class="form-control m-bot15 ">
+                                <option value="1398">1398</option>
+                                <option value="1399">1399</option>
+                                <option value="1400">1400</option>
+                                <option value="1401">1401</option>
+                                <option value="1402">1402</option>
+                                <option value="1403">1403</option>
+                                <option value="1404">1404</option>
+                                <option value="1405">1405</option>
+                                <option value="1406">1406</option>
+                            </select>
+
                         </div>
                         <div class="form-group">
-                            <button type="submit" name="paybtn" class="btn btn-success">پرداخت شهریه</button>
+                            <button type="submit" name="paybtn" class="btn btn-success"> تمدید</button>
                             <?php
                             if (isset($_POST['paybtn'])){
                                 echo '<button type="submit" name="paybtn2" class="btn btn-info"> چاپ فیش</button>';
@@ -155,9 +116,7 @@ if (isset($_GET['contact']) == 'pay_payShahrie'):
         $data = $_POST['frm'];
         $_SESSION['nameP'] =         $val->name;//----------for print part 2---
         $_SESSION['reshtetitleP'] =  $val->reshte;
-        $_SESSION['monyP'] =         $data['mony'] ;
-        $_SESSION['monthP'] =        $data['month'];
-        $_SESSION['tshahrie2p'] =    $val->tshahrie2;
+        $_SESSION['tshahrie2p'] =    $data['tshahrie2m']."-".$data['tshahrie2y'];
         $_SESSION['tsabtnamP'] =     time();
 
         echo "<div class=\"col-sm-6 \">
@@ -175,11 +134,6 @@ if (isset($_GET['contact']) == 'pay_payShahrie'):
                 <td>رشته ورزشی &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</td>
                 <td id=\"wreshte\">" . $val->reshte . "</td>
             </tr>
-            <tr>
-                <td> مبلغ پرداختی &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</td>
-                <td id=\"wmony\">" . $data['mony'] . "</td>
-            </tr>
-            
             <tr>
                 <td> انقضای بیمه  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</td>
                 <td id=\"wcname\">" . $_SESSION['tshahrie2p'] . "</td>
@@ -219,14 +173,6 @@ if (isset($_GET['contact']) == 'pay_payShahrie'):
                 <td id=\"wreshte\">" . $_SESSION['reshtetitleP'] . "</td>
             </tr>
             <tr>
-                <td> مبلغ پرداختی &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</td>
-                <td id=\"wmony\">" . $_SESSION['monyP'] . "</td>
-            </tr>
-            <tr>
-                <td> شهریه ماه &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</td>
-                <td id=\"wmonth\">" .  $_SESSION['monthP']  . "</td>
-            </tr>
-            <tr>
                 <td> انقضای بیمه  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</td>
                 <td id=\"wcname\">" . $_SESSION['tshahrie2p'] . "</td>
             </tr>
@@ -262,14 +208,6 @@ if (isset($_GET['contact']) == 'pay_payShahrie'):
             <tr>
                 <td>رشته ورزشی &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</td>
                 <td id=\"wreshte\">". $_SESSION['reshtetitleP'] . "</td>
-            </tr>
-            <tr>
-                <td> مبلغ پرداختی &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</td>
-                <td id=\"wmony\">" . $_SESSION['monyP'] .  "</td>
-            </tr>
-            <tr>
-                <td> شهریه ماه &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</td>
-                <td id=\"wmonth\">" .  $_SESSION['monthP']  . "</td>
             </tr>
             <tr>
                 <td> انقضای بیمه  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</td>

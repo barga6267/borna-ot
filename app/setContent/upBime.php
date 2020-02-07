@@ -6,7 +6,7 @@ $row = $obj->select_data("*");
 <div class="row">
     <div class="col-lg-3">
         <section class="panel">
-            <header class="panel-heading">پرداخت شهریه ماهانه
+            <header class="panel-heading">تمدید اعتبار بیمه ورزشی
             </header>
             <div class="row">
                 <div class="col-lg-9">
@@ -75,12 +75,14 @@ $row = $obj->select_data("*");
                         <tr>
                             <th>رشته ورزشی
                                 &nbsp;&nbsp;&nbsp; :&nbsp;&nbsp;&nbsp;<?php echo $val->reshte ?></th>
+                            <th>انقضای بیمه
+                                &nbsp;&nbsp;&nbsp; :&nbsp;&nbsp;&nbsp;<?php echo $val->tshahrie2 ?></th>
                             <th><a href="dashbord.php?contact=list_shahrie&par_tbl=<?php echo $tblId;?>&par_id=<?php echo $val->id;?>"
                                    class="btn btn-info ">نمایش شهریه</a>
                             </th>
                             <th>
-                                <a href="dashbord.php?contact=pay_payShahrie&pid=<?php echo $val->id ?>&resh=<?php echo $tblId; ?>"
-                                   class="btn btn-success ">پرداخت شهریه</a>
+                                <a href="dashbord.php?contact=up_upBime&pid=<?php echo $val->id ?>&resh=<?php echo $tblId; ?>"
+                                   class="btn btn-success ">تمدید بیمه</a>
                             </th>
                         </tr>
                     </form>

@@ -11,19 +11,18 @@ if (isset($_POST['btn'])) {
     $data['reshte']=$reshteTitle;
     $data['tsabtnam'] = time();
     $data['dateShahrie'] = time();         //------------برای نشان دادن زمان پرداخت شهریه---------
-    $data['tshahrie1'] = $data['month'];    //----برای نشان اینکه شهریه پرداختی برای کدام ماه است---------
-    $data['tshahrie2'] = '.';
-    $monthToStr=$data['month'];
-    $monyToStr=$data['mony'];
-    $timeToStr=$data['tsabtnam'];
-    $array=array($monthToStr,$monyToStr,$timeToStr);
-    $data['tshahrie3'] = json_encode($array);
+    $data['tshahrie1'] = $data['month']."-".$data['mony']."-".$data['tsabtnam'];
+    $data['tshahrie2'] = $data['tshahrie2m']."-".$data['tshahrie2y'];
+    unset($data['tshahrie2m']);
+    unset($data['tshahrie2y']);
+
+    $data['tshahrie3'] ='2';
     $_SESSION['name'] =         $data['name'];//----------for print part 2---
     $_SESSION['reshtetitle'] =  $reshteTitle;
     $_SESSION['mony'] =         $data['mony'];
     $_SESSION['month'] =        $data['month'];
     $_SESSION['tsabtnam'] =     $data['tsabtnam'];
-
+    $_SESSION['tshahrie2'] =    $data['tshahrie2'];
 
     $obj->settbl("r_".$cod);
     $obj->add_data($data);  //----add to 1 or 2 or....10
@@ -95,8 +94,36 @@ if (isset($_POST['btn'])) {
                             <option value="دی">دی</option>
                             <option value="بهمن">بهمن</option>
                             <option value="اسفند">اسفند</option>
-
                         </select>
+                    </div>
+                    <div class="form-group ">
+                        <label for="exampleInputEmail1">  تاریخ انقضای بیمه :</label>
+                        <select name="frm[tshahrie2m]" class="form-control m-bot15 ">
+                            <option value="فروردین">فروردین</option>
+                            <option value="اردیبهشت">اردیبهشت</option>
+                            <option value="خرداد">خرداد</option>
+                            <option value="تیر">تیر</option>
+                            <option value="مرداد">مرداد</option>
+                            <option value="شهریور">شهریور</option>
+                            <option value="مهر">مهر</option>
+                            <option value="ابان">ابان</option>
+                            <option value="اذر">اذر</option>
+                            <option value="دی">دی</option>
+                            <option value="بهمن">بهمن</option>
+                            <option value="اسفند">اسفند</option>
+                        </select>
+                        <select name="frm[tshahrie2y]" class="form-control m-bot15 ">
+                            <option value="1398">1398</option>
+                            <option value="1399">1399</option>
+                            <option value="1400">1400</option>
+                            <option value="1401">1401</option>
+                            <option value="1402">1402</option>
+                            <option value="1403">1403</option>
+                            <option value="1404">1404</option>
+                            <option value="1405">1405</option>
+                            <option value="1406">1406</option>
+                        </select>
+
                     </div>
                     <div class="form-group bluc">
                         <button type="submit" name="btn" class="btn btn-success"> ثبت نام</button>
@@ -144,6 +171,10 @@ if (isset($_POST['btn'])) {
             <tr>
                 <td> شهریه ماه &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</td>
                 <td id=\"wmonth\">" . $data['month'] . "</td>
+            </tr>
+            <tr>
+                <td> انقضای بیمه  &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</td>
+                <td id=\"wmonth\">" . $data['tshahrie2m']."-".$data['tshahrie2y'] . "</td>
             </tr>
             <tr>
                 <td> اپراتور ثبت  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</td>
@@ -194,6 +225,10 @@ if (isset($_POST['btn2'])) {
                 <td id=\"wmonth\">" .  $_SESSION['month']  . "</td>
             </tr>
             <tr>
+                <td>  انقضای بیمه  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</td>
+                <td id=\"wmonth\">" .  $_SESSION['tshahrie2']  . "</td>
+            </tr>
+            <tr>
                 <td> اپراتور ثبت  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</td>
                 <td id=\"wcname\">" . $_SESSION['lastname'] . "</td>
             </tr>
@@ -234,6 +269,10 @@ if (isset($_POST['btn2'])) {
             <tr>
                 <td> شهریه ماه &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</td>
                 <td id=\"wmonth\">" .  $_SESSION['month']  . "</td>
+            </tr>
+            <tr>
+                <td>  انقضای بیمه  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</td>
+                <td id=\"wmonth\">" .  $_SESSION['tshahrie2']  . "</td>
             </tr>
             <tr>
                 <td> اپراتور ثبت  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</td>

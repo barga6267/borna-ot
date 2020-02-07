@@ -15,12 +15,14 @@ $searchForAllData=null;
 if (isset($_POST['sr2btn'])):
     $data = $_POST['frm'];
     if ($data['reshte']=="sabt_data_tbl"){
-        $obj->settbl("sabt_data_tbl");
+        $tbl="sabt_data_tbl";
+        $obj->settbl("$tbl");
         $value = $data['value'];
         $res = $obj->like_data("name", $value);
         if(empty($res)){
             echo  "در جدول ثبت نام ها  یافت نشد !!";
-            $obj->settbl("shah_data_tbl");
+            $tbl="shah_data_tbl";
+            $obj->settbl($tbl);
             $value = $data['value'];
             $res = $obj->like_data("name", $value);
             if (empty($res)){
@@ -31,6 +33,7 @@ if (isset($_POST['sr2btn'])):
             }
         }
     }else{
+        $tbl="ok";
         $tblId="r_".$data['reshte'];
         $obj->settbl($tblId);
         $value = $data['value'];
@@ -55,7 +58,8 @@ if (isset($_POST['sr2btn'])):
                             <th>ردیف</th>
                             <th>نام</th>
                             <th>رشته ورزشی</th>
-                            <th>ماه شهریه</th>
+                            <th> انقضای بیمه ورزشی</th>
+                            <th> شهریه</th>
 <!--                            <th>حذف</th>-->
                         </tr>
                         </thead>
@@ -69,7 +73,9 @@ if (isset($_POST['sr2btn'])):
                                 <td><?php echo $i ?></td>
                                 <td><?php echo $vals->name ?></td>
                                 <td><?php echo $vals->reshte; ?></td>
-                                <td><?php echo $vals->month ?></td>
+                                <td><?php if ($tbl=="shah_data_tbl" || $tbl=="sabt_data_tbl"){echo "امکان نمایش وجود ندارد";}else{ echo $vals->tshahrie2;} ?></td>
+                                <td><a href="dashbord.php?contact=list_shahrie&par_tbl=<?php echo $tblId;?>&par_id=<?php echo $vals->id;?>"
+                                       class="btn btn-info ">نمایش شهریه</a></td>
 <!--                                <td><a href="dashbord.php?contact=search&did=--><?php //echo $vals->id ?><!--" class="btn btn-danger btn-xs"><i-->
 <!--                                            class="icon-trash "></i></a></td>-->
                             </tr>

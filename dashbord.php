@@ -97,6 +97,7 @@ if (isset($_GET['logout'])) {
                 <li><a class="" href="dashbord.php?contact=sabtname">ثبت نام </a></li>
                 <li><a class="" href="dashbord.php?contact=payShahrie">پرداخت شهریه</a></li>
                 <li><a class="" href="dashbord.php?contact=search">جستجو </a></li>
+                <li><a class="" href="dashbord.php?contact=upbime">اعتبار بیمه </a></li>
                 <li class="sub-menu">
                 <li class="sub-menu">
                     <a href="javascript:;" class="">
@@ -164,7 +165,7 @@ if (isset($_GET['logout'])) {
             include_once 'app/component/jdf.php';
 			if ($_SESSION['lastname']=='مهدیلو' || $_SESSION['lastname']=='بختیاری' || $_SESSION['lastname']=='میخچی' || $_SESSION['lastname']=='گیاهی' || $_SESSION['lastname']=='a' ){
                 include_once 'app/database_users/db.php';
-				$obj=new db;
+                $obj=new db;
                 }elseif ($_SESSION['lastname']=='احمدی' || $_SESSION['lastname']=='فیاضی'|| $_SESSION['lastname']=='a'){
                 include_once 'app/database_users/dbw.php';
 				$obj=new dbw;
@@ -246,6 +247,15 @@ if (isset($_GET['logout'])) {
                 }elseif ($_GET['contact'] == 'list_mos_month')
                 {
                     include_once 'app/masaje/list_mos_month.php';
+                }elseif ($_GET['contact'] == 'list_shahrie')
+                {
+                    include_once 'app/listContent/list_shahrie.php';
+                }elseif ($_GET['contact'] == 'upbime')
+                {
+                    include_once 'app/setContent/upBime.php';
+                }elseif ($_GET['contact'] == 'up_upBime')
+                {
+                    include_once 'app/setContent/up_upBime.php';
                 }
             }
             ?>
